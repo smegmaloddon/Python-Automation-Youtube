@@ -1,0 +1,20 @@
+# Python virtual environment
+venv/
+
+# Build and binary directories
+bin/
+
+dist/
+build/
+
+# Assets and temporary files
+assets/
+temp/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Editor files
+.vscode/
+*.swp
