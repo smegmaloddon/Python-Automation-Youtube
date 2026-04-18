@@ -2,6 +2,6 @@
 from pathlib import Path
 
 # variables
-channel : str | None = None # channel identity
-content : dict[any] = {} # channel dictionary
-shorts : bool = True # is video shorts /or long-form
+Channel : str | None = None # channel identity
+Content : dict[any] = {} # channel dictionary
+Shorts : bool = True # is video shorts /or long-form

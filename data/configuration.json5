@@ -1,0 +1,26 @@
+{
+
+    'placeholder-channel': {
+
+        'video': {
+
+            'lengths': [
+                6, 12
+            ],
+
+            'count': [
+                5, 24
+            ]
+        },
+
+        'web': {
+
+            'length': 16,
+
+            'archive': [
+
+                'funnyanimals'
+            ]
+        }
+    }
+}
