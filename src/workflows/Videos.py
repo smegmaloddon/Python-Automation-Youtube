@@ -89,7 +89,7 @@ def Run(
             {
 
                 'url': url,
-                'output': f'video-{number}'
+                'output': path /f'video-{number}.mp4'
             }
         )
 
@@ -97,7 +97,7 @@ def Run(
     # reset arguments[]
     Threads.Thread(
         func=Download.Playlist,
-        arguments=arguments
+        items=arguments
     )
     arguments = []
 

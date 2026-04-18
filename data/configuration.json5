@@ -15,11 +15,11 @@
 
         'web': {
 
-            'length': 16,
+            'length': 12,
 
             'archive': [
 
-                'funnyanimals'
+                'catfails'
             ]
         }
     }

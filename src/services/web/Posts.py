@@ -84,5 +84,8 @@ def Run(
         # merge tables
         saveables = saveables +posts
 
+    # remove last items from list
+    saveables = saveables[:requirement]
+
     # send filtered posts back
     return saveables
