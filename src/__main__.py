@@ -1,5 +1,6 @@
 # imports
 from pathlib import Path
+import time
 
 # user imports
 from src.utils.data import Temporary, Configuration
@@ -46,4 +47,9 @@ def Run(
 # entry
 if __name__ == '__main__':
 
+    timestamp : float = time.time()
     Run()
+
+    print(
+        f'timestamp : {time.time() -timestamp}'
+    )

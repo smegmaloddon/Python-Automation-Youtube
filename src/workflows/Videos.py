@@ -8,15 +8,16 @@ from src.utils.data import Configuration, Temporary
 from src.utils.io import Directory, JSON5, Download, FFMPEG
 from src.utils import Threads
 
-from src.helpers.video import Scene
+from src.helpers.video import Scene, Separators
 from src.services.web import Posts
-from src.services.video import Normalise, Trim, Merge, Speed
+from src.services.video import Normalise, Trim, Merge, Speed, Ratio
 
 # constants
 PLACEHOLDER_LENGTH : list[float] = [256, 256]
 PLACEHOLDER_MULTIPLIER : list[float] = [1, 1]
 
 # functions
+# used to fetch posts from www.reddit.com
 def __Posts(
 ) -> list[dict]:
     
@@ -57,12 +58,11 @@ def __Posts(
     # return posts to main func()
     return posts
 
-def Run(
+# func() to download retrieved posts
+def __Download(
+    posts : list[dict]
 ) -> None:
     
-    # fetch posts --(pre-ranked, pre-video : bool)
-    posts : list[dict] = __Posts()
-
     # create directory & download videos
     path : Path = Configuration.TEMPORARY /'videos'
     Directory.Create(
@@ -105,7 +105,27 @@ def Run(
         func=Download.Playlist,
         items=arguments
     )
-    arguments = []
+
+# func() to customise individual .mp4s
+def __Filter(
+    path : Path
+) -> None:
+    
+    # init arguments
+    arguments : list = []
+    
+    # fetch scene from video & trim
+    timestamps : list[dict] = Scene.Run(
+        videos=[
+            video for video in path.iterdir()
+        ], between=6
+    )
+    
+    # thread the trim.py
+    Threads.Thread(
+        func=Trim.Run,
+        items=timestamps
+    )
 
     # fetch speed multiplier
     multiplier : float = Temporary.Content.get(
@@ -128,12 +148,82 @@ def Run(
             }
         )
 
-    # run speed.py
+    # run speed.py & reset arguments
     Threads.Thread(
         func=Speed.Speed,
         items=arguments
     )
+    arguments = []
 
+    # run ratio
+    Ratio.Run(
+        videos=[
+            video for video in path.iterdir()
+        ],
+        ratio='9x16' if Temporary.Shorts else '16x9'
+    )
 
-
+# func() to merge all .mp4s
+def __Merge(
+    path : Path
+) -> None:
     
+    # create merge list[]
+    mergeable : list[Path] = []
+    useable : bool = Temporary.Content['video'].get(
+        'separator-config', None
+    ) != None
+
+    # build mergeable list[]
+    for number, video in enumerate(
+        path.iterdir()
+    ):
+        
+        mergeable.append(
+            path /f'video-{number}.mp4'
+        )
+
+        # if not separators, continue
+        if not useable:
+
+            continue
+
+        mergeable.append(
+            Configuration.TEMPORARY /'separators' /f'separator-{number}.mp4'
+        )
+
+    # run merge.py
+    Merge.Videos(
+        videos=mergeable
+    )
+
+def Run(
+) -> None:
+    
+    # fetch posts --(pre-ranked, pre-video : bool)
+    posts : list[dict] = __Posts()
+
+    # download posts
+    __Download(
+        posts=posts
+    )
+
+    # videos path reference
+    path : Path = Configuration.TEMPORARY /'videos'
+
+    # create separator if required
+    if Temporary.Content['video'].get(
+        'separator-config', None
+    ) != None:
+        
+        Separators.Run()
+
+    # trim & select .etc
+    __Filter(
+        path=path
+    )
+
+    # merge & save filtered videos
+    __Merge(
+        path=path
+    )

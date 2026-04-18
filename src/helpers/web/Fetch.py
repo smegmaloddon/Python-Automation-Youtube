@@ -1,16 +1,18 @@
 # imports 
 import requests
 import random
+import time
 
 # constants
 TIME_LIST : list[str] = [
 
-    # 'day',
-    # 'week',
+    'day',
+    'week',
     'month',
     'year',
     'all'
 ]
+MAXIMUM_ERROR : int = 3
 QUERY_LIST: list[str] = [
 
     'hot', 
@@ -24,10 +26,25 @@ HEADERS : dict[str : str] = {
     'User-Agent': 'my-reddit-app/0.1'
 }
 
+# global variables
+error : float = 0
+
 # functions
 def Run(
     archive : list[str]
 ) -> list:
+
+    # set local to global variable
+    global error
+    
+    time.sleep(
+        TIME_DELAY
+    )
+    if error >=MAXIMUM_ERROR:
+
+        raise ResourceWarning(
+            'Possible RATE-LIMIT'
+        )
     
     # assert array
     assert isinstance(
@@ -57,8 +74,14 @@ def Run(
     )
     if response.status_code != 200:
 
+        print('failed : ', url)
+        error = error +1
+
         # return list[]
         return []
+    
+    # reduce error
+    error = error -0.5
     
     # convert to .json & build posts
     response : dict = response.json()
