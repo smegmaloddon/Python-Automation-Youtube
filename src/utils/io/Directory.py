@@ -65,6 +65,15 @@ def Replace(
         target=old
     )
 
+# create directory
+def Create(
+    directory : Path
+) -> None:
+    
+    # create the folder
+    Path.mkdir(
+        directory
+    )
     
 
 

@@ -3,7 +3,7 @@ from pathlib import Path
 
 # user imports
 from src.utils.data import Temporary, Configuration
-from src.utils.io import JSON5
+from src.utils.io import JSON5, Directory
 
 from src.workflows import Videos
 
@@ -29,6 +29,11 @@ def __Temporary(
 
 def Run(
 ) -> None:
+    
+    # cleanse temp/ file
+    Directory.Cleanse(
+        folder=Configuration.TEMPORARY
+    )
     
     # fetch temporary data for channel
     __Temporary(

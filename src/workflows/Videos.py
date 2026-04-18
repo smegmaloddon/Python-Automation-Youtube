@@ -5,7 +5,8 @@ import requests
 
 # user imports
 from src.utils.data import Configuration, Temporary
-from src.utils.io import Directory, JSON5
+from src.utils.io import Directory, JSON5, Download
+from src.utils import Threads
 
 from src.services.web import Posts
 
@@ -53,8 +54,51 @@ def __Posts(
 def Run(
 ) -> None:
     
-    # fetch posts
-    # (pre-ranked, pre-video : bool)
+    # fetch posts --(pre-ranked, pre-video : bool)
     posts : list[dict] = __Posts()
+
+    # create directory & download videos
+    path : Path = Configuration.TEMPORARY /'videos'
+    Directory.Create(
+        directory=path
+    )
+
+    # build arguments list[dict]
+    arguments : list[dict] = []
+    for number, post in enumerate(
+        posts, 0
+    ):
+
+        # fetch .mpd url 
+        url : str = post.get(
+            'media', {}
+        ).get(
+            'reddit_video', {}
+        ).get(
+            'dash_url', None
+        )
+
+        # fallback
+        if url is None:
+
+            continue
+        
+        # add arguments to list
+        arguments.append(
+
+            {
+
+                'url': url,
+                'output': f'video-{number}'
+            }
+        )
+
+    # thread func() & arguments
+    # reset arguments[]
+    Threads.Thread(
+        func=Download.Playlist,
+        arguments=arguments
+    )
+    arguments = []
 
     
