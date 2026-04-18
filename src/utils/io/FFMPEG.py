@@ -137,3 +137,40 @@ def SilenceThreshold(
     )
 
     return mean <threshold
+
+def ExtractAudio(
+    path : Path,
+    output : Path
+) -> None:
+    
+    # build process
+    process = [
+        Configuration.FFMPEG,
+        '-y',
+
+        '-i', str(path),
+
+        # 🔥 more tolerant decoding (important)
+        '-fflags', '+discardcorrupt',
+        '-err_detect', 'ignore_err',
+
+        # no video
+        '-vn',
+
+        # 🔥 optional audio (won’t crash if missing)
+        '-map', '0:a?',
+
+        # 🔥 force proper decoding (more stable than copy)
+        '-c:a', 'pcm_s16le',
+        '-ar', '44100',
+        '-ac', '2',
+
+        # 🔥 overwrite-safe + consistent output
+        str(
+            output
+        )
+    ]
+
+    Run(
+        process=process
+    )

@@ -5,10 +5,16 @@ import requests
 
 # user imports
 from src.utils.data import Configuration, Temporary
-from src.utils.io import Directory, JSON5, Download
+from src.utils.io import Directory, JSON5, Download, FFMPEG
 from src.utils import Threads
 
+from src.helpers.video import Scene
 from src.services.web import Posts
+from src.services.video import Normalise, Trim, Merge, Speed
+
+# constants
+PLACEHOLDER_LENGTH : list[float] = [256, 256]
+PLACEHOLDER_MULTIPLIER : list[float] = [1, 1]
 
 # functions
 def __Posts(
@@ -100,5 +106,34 @@ def Run(
         items=arguments
     )
     arguments = []
+
+    # fetch speed multiplier
+    multiplier : float = Temporary.Content.get(
+        'video', {} 
+    ).get(
+        'speed', PLACEHOLDER_MULTIPLIER
+    )
+    multiplier : float = multiplier[0] if Temporary.Shorts else multiplier[1]
+
+    # build arguments[] for Speed.py
+    for video in path.iterdir():
+
+        arguments.append(
+
+            {
+
+                'path': video,
+                'multiplier': multiplier,
+                'ignore': True
+            }
+        )
+
+    # run speed.py
+    Threads.Thread(
+        func=Speed.Speed,
+        items=arguments
+    )
+
+
 
     
