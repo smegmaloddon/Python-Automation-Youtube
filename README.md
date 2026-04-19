@@ -44,10 +44,7 @@ Or use specific workflows from the `workflows/` directory.
 
 Here's an example of a processed video template:
 
-<video width="640" height="360" controls>
-  <source src="docs/videos/template.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[Watch the video](docs/videos/template.mp4)
 
 ## Project Structure
 
