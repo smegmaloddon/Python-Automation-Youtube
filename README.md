@@ -44,7 +44,7 @@ Or use specific workflows from the `workflows/` directory.
 
 Here's an example of a processed video template:
 
-[Watch the video](docs/videos/template.mp4)
+[Download / Watch video](docs/videos/template.mp4)
 
 ## Project Structure
 
