@@ -2,7 +2,7 @@
 from pathlib import Path
 
 # user imports
-from src.helpers.video.draw import Descriptions, Numbers
+from src.helpers.video.draw import Descriptions, Numbers, Hook
 from src.utils.data import Configuration, Temporary
 from src.utils.characters import UUID
 from src.utils.io import FFMPEG, Directory
@@ -90,3 +90,6 @@ def Run(
         old=Configuration.TEMPORARY /'video.mp4',
         new=output
     )
+
+    # add hook
+    Hook.Run()

@@ -2,7 +2,7 @@
 from pathlib import Path
 
 # user imports
-from src.utils import Configuration, Temporary
+from src.utils.data import Configuration, Temporary
 
 # functions
 def Darken(

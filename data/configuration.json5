@@ -28,9 +28,9 @@
 
             'rank-config': {
 
-                'vertical-pixels': 42,
+                'vertical-pixels': 48,
                 'horizontal-pixels': 36,
-                'horizontal-pixel-gap': 28
+                'horizontal-pixel-gap': 44
             }
         },
 
@@ -40,7 +40,7 @@
 
             'archive': [
 
-                'instantkarma'
+                'AnimalsBeingDerps'
             ]
         }
     }
