@@ -8,7 +8,7 @@ from src.utils.data import Configuration, Temporary
 from src.utils.io import Directory, JSON5, Download, FFMPEG
 from src.utils import Threads
 
-from src.helpers.video import Scene, Separators
+from src.helpers.video import Scene, Separators, Rank
 from src.services.web import Posts
 from src.services.video import Normalise, Trim, Merge, Speed, Ratio
 
@@ -226,4 +226,12 @@ def Run(
     # merge & save filtered videos
     __Merge(
         path=path
+    )
+
+    # add ranking to video & save
+    Rank.Run(
+        posts=posts,
+        videos=[
+            video for video in path.iterdir()
+        ]
     )

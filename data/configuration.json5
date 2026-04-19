@@ -5,7 +5,7 @@
         'video': {
 
             'lengths': [
-                6, 12
+                7, 12
             ],
 
             'count': [
@@ -16,11 +16,21 @@
                 1.5, 1
             ],
 
+            'font': 'fredoka-one.one-regular.ttf',
+            'font-size': 32,
+
             'separator-config': {
 
                 'video': 'TV Static Distorted --audio --video.mp4',
 
-                'length': 0.4
+                'length': 0.75
+            },
+
+            'rank-config': {
+
+                'vertical-pixels': 42,
+                'horizontal-pixels': 36,
+                'horizontal-pixel-gap': 28
             }
         },
 
@@ -30,7 +40,7 @@
 
             'archive': [
 
-                'AnimalsBeingJerks'
+                'instantkarma'
             ]
         }
     }
