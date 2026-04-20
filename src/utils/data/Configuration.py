@@ -16,6 +16,15 @@ FFMPEG : Path = BIN /'video' /'bin' /'ffmpeg.exe'
 FFPROBE : Path = BIN /'video' /'bin' /'ffprobe.exe'
 FFPLAY : Path = BIN /'video' /'bin' /'ffplay.exe'
 
+# keys for apis
+ARTIFICIAL : list[str] = [
+
+    'AIzaSyDaCiAERqkCVsLtugIHPATBtQ3HNGfW6fw', 
+    'AIzaSyAxlCcoRfil6Yr061njkFwA2FcAT9jSveE', 
+    'AIzaSyDJ72sXFO_47S8E3z8dgLKJmtLvEjQGXI4'
+]
+STOCK : str = '53636883-18dd4c5344673acec1a9a2a12'
+
 # decorator time function
 def Time(
     func : object

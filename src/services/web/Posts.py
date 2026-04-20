@@ -38,7 +38,7 @@ def Run(
             break
 
         # fetch raw posts
-        posts : list[dict] = Fetch.Run(
+        posts : list[dict] = Fetch.Posts(
             archive=archive
         )
 

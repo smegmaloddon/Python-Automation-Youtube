@@ -10,6 +10,8 @@ from src.utils import Threads
 
 from src.helpers.video import Scene, Separators, Rank
 from src.services.web import Posts
+from src.services import Script
+from src.services.upload import Upload
 from src.services.video import Normalise, Trim, Merge, Speed, Ratio
 
 # constants
@@ -197,11 +199,43 @@ def __Merge(
         videos=mergeable
     )
 
+def __Save(
+    posts : list[dict]
+) -> None:
+    
+    # save posts
+    saved : dict = JSON5.Read(
+        path=Configuration.DATA /'posts.json5'
+    )
+    placeholder : list = saved.get(
+        Temporary.Channel, []
+    )
+
+    # combine posts & save
+    for post in posts:
+
+        placeholder.append(
+            post.get(
+                'id', None
+            )
+        )
+
+    saved[Temporary.Channel] = placeholder
+    JSON5.Write(
+        path=Configuration.DATA /'posts.json5',
+        contents=saved
+    )
+
 def Run(
 ) -> None:
    
     # fetch posts --(pre-ranked, pre-video : bool)
     posts : list[dict] = __Posts()
+
+    # save posts
+    __Save(
+        posts=posts
+    )
     
     # download posts
     __Download(
@@ -234,4 +268,31 @@ def Run(
         videos=[
             video for video in path.iterdir()
         ]
+    )
+
+    # create prompt 
+    prompt : str = str.format(
+        Temporary.Content['script'].get(
+            'upload-prompt', None
+        ), posts
+    )
+    if not prompt:
+
+        raise ValueError(
+            'No prompt'
+        )
+
+    # create title & desciption
+    dictionary : dict = Script.Create(
+        prompt=prompt
+    )
+    
+    # upload to youtube
+    Upload.Upload(
+        title=dictionary.get(
+            'Title', None
+        ),
+        description=dictionary.get(
+            'Description', None
+        )
     )

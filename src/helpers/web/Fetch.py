@@ -30,7 +30,7 @@ HEADERS : dict[str : str] = {
 error : float = 0
 
 # functions
-def Run(
+def Posts(
     archive : list[str]
 ) -> list:
 
@@ -88,6 +88,42 @@ def Run(
     placeholder : list[dict] = [
         array['data']
         for array in response['data']['children']
+    ]
+
+    return placeholder
+
+def Comments(
+    post : dict
+) -> list:
+    
+    # global error
+    global error
+    
+    # build url
+    url : str = f"https://www.reddit.com/comments/{post['id']}.json?sort=top&limit=24&depth=1"
+
+    # fetch response & error check
+    response : requests.Response = requests.get(
+        url=url,
+        headers=HEADERS
+    )
+    if response.status_code != 200:
+
+        print('failed : ', url)
+        error = error +1
+
+        # return list[]
+        return []
+    
+    # reduce error
+    error = error -0.5
+    
+    # convert to .json & build posts
+    response : dict = response.json()
+    placeholder : list[dict] = [
+        array['data']
+        for array in response[1]['data']['children']
+        if array['kind'] == 't1'
     ]
 
     return placeholder

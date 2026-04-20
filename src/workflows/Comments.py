@@ -5,6 +5,7 @@ import random
 # user imports
 from src.services.web import Posts
 from src.utils.data import Temporary, Configuration
+from src.services.web import Comments
 
 # functions
 # used to fetch posts from www.reddit.com
@@ -45,7 +46,15 @@ def __Comments(
 ) -> list[dict]:
     
     # init count (amount of comments)
-    count : int = 5
+    requirement : int = 8
+
+    # fetch comments
+    comments : list[dict] = Comments.Run(
+        post=post,
+        requirement=requirement
+    )
+
+    return comments
 
 def Run(
 ) -> None:
@@ -57,3 +66,5 @@ def Run(
     comments : list[dict] = __Comments(
         post=post
     )
+
+    print(comments)

@@ -5,7 +5,7 @@
         'video': {
 
             'lengths': [
-                6, 12
+                7, 12
             ],
 
             'count': [
@@ -13,7 +13,7 @@
             ],
 
             'speed': [
-                1.25, 1
+                1.5, 1
             ],
 
             'font': 'fredoka-one.one-regular.ttf',
@@ -23,7 +23,7 @@
 
                 'video': 'TV Static Distorted --audio --video.mp4',
 
-                'length': 0.75
+                'length': 0.5
             },
 
             'rank-config': {
@@ -40,10 +40,27 @@
 
             'archive': [
 
-                'instantkarma',
-                'instantfails',
-                'dashcamUK'
+                'aww',
+                'AnimalsBeingDerps',
+                'AnimalsBeingJerks',
+                'FunnyAnimals',
+                'rarepuppers',
+                'WhatsWrongWithYourDog',
+                'WhatsWrongWithYourCat',
+                'Zoomies',
+                'StartledCats',
+                'dogvideos',
+                'catvideos',
+                'AnimalsBeingBros',
+                'likeus',
+                'Eyebleach',
+                'holdmycatnip'
             ]
+        },
+
+        'script': {
+
+            'upload-prompt': 'You are a Youtube Channel\n\nCreate a title for a Youtube Short using relevant data provided & trending topics FOR EXAMPLE: instantkarma = Use the word Karen, Politics = Relevant Poltical Figures\nHere is data that may influence the creation:\n{data}\n\nOutput:\n{\n    Title = Created Title\n    Description = Created Description\n}\n\nOutput must contain what is required using the data and format exactly into a dictionary as shown\nAny other formats are void & must be re-done until it is exactly as specified, JSON output must be exactly JSON Dictionary and be availible to turn into python dictionary without error' 
         }
     },
 
@@ -55,6 +72,10 @@
         },
 
         'web': {
+
+            'count': [
+                8, 24
+            ],
 
             'archive': [
 

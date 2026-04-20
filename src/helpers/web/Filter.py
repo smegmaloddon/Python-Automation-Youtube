@@ -13,9 +13,9 @@ def Videos(
     # fetch limited to boolean
     placeholder : list[dict] = [
 
-        post for post in posts if post[
-            'is_video'
-        ] == boolean
+        post for post in posts if post.get(
+            'is_video', False
+        ) == boolean
     ]
 
     return placeholder
