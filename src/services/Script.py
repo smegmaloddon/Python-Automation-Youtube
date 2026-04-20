@@ -115,10 +115,11 @@ def Create(
         dictionary : json = json.loads(
             text
         )
-        return dictionary
     except JSONDecodeError:
 
         print(
             'error : jsondecode'
         )
-        return {}
+        dictionary : dict = {}
+
+    return dictionary

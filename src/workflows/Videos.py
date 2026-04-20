@@ -17,6 +17,7 @@ from src.services.video import Normalise, Trim, Merge, Speed, Ratio
 # constants
 PLACEHOLDER_LENGTH : list[float] = [256, 256]
 PLACEHOLDER_MULTIPLIER : list[float] = [1, 1]
+MAXIMUM_SCRIPT : int = 3
 
 # functions
 # used to fetch posts from www.reddit.com
@@ -283,9 +284,32 @@ def Run(
         )
 
     # create title & desciption
-    dictionary : dict = Script.Create(
-        prompt=prompt
-    )
+    dictionary : dict = None
+    number : int = 0
+
+    flag : bool = True
+    while flag:
+
+        if number >=MAXIMUM_SCRIPT:
+
+            break
+
+        dictionary = Script.Create(
+            prompt=prompt
+        )
+        if dictionary != {} and dictionary != None:
+
+            flag = False
+            break
+
+        number = number +1
+
+    if flag:
+
+        print(
+            'error : script jsondecode'
+        )
+        return
     
     # upload to youtube
     Upload.Upload(

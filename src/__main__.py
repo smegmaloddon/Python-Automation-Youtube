@@ -30,6 +30,7 @@ def __Temporary(
     assert Temporary.Content is not None, 'Channel does not exist'
 
 def Run(
+    channel : str
 ) -> None:
     
     # cleanse temp/ file
@@ -39,7 +40,7 @@ def Run(
     
     # fetch temporary data for channel
     __Temporary(
-        channel='placeholder-channel'
+        channel=channel
     )
 
     Authorisation.Run()
@@ -51,7 +52,12 @@ def Run(
 if __name__ == '__main__':
 
     timestamp : float = time.time()
-    Run()
+    Run(
+        channel='placeholder-channel'
+    )
+    Run(
+        channel='instant-karma-personified'
+    )
 
     print(
         f'timestamp : {time.time() -timestamp}'
