@@ -19,9 +19,7 @@ FFPLAY : Path = BIN /'video' /'bin' /'ffplay.exe'
 # keys for apis
 ARTIFICIAL : list[str] = [
 
-    'AIzaSyDaCiAERqkCVsLtugIHPATBtQ3HNGfW6fw', 
-    'AIzaSyAxlCcoRfil6Yr061njkFwA2FcAT9jSveE', 
-    'AIzaSyDJ72sXFO_47S8E3z8dgLKJmtLvEjQGXI4'
+    'AIzaSyAuxBaAdfyc9ZIpU16xlR7x3aQ13SN6_-U'
 ]
 STOCK : str = '53636883-18dd4c5344673acec1a9a2a12'
 

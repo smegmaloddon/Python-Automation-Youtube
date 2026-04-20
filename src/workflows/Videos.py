@@ -272,11 +272,10 @@ def Run(
     )
 
     # create prompt 
-    prompt : str = str.format(
-        Temporary.Content['script'].get(
-            'upload-prompt', None
-        ), posts
-    )
+    prompt : str = Temporary.Content['script'].get(
+        'upload-prompt', ''
+    ) +f'data : {posts}'
+
     if not prompt:
 
         raise ValueError(
@@ -303,13 +302,6 @@ def Run(
             break
 
         number = number +1
-
-    if flag:
-
-        print(
-            'error : script jsondecode'
-        )
-        return
     
     # upload to youtube
     Upload.Upload(

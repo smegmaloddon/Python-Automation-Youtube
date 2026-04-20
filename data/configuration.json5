@@ -5,11 +5,11 @@
         'video': {
 
             'lengths': [
-                7, 12
+                5, 12
             ],
 
             'count': [
-                5, 24
+                4, 24
             ],
 
             'speed': [
@@ -23,7 +23,7 @@
 
                 'video': 'TV Static Distorted --audio --video.mp4',
 
-                'length': 0.5
+                'length': 0.25
             },
 
             'rank-config': {
@@ -64,16 +64,16 @@
         }
     },
 
-    'instant-karma-personified': {
+    'sports-clips-channel': {
 
         'video': {
 
             'lengths': [
-                8, 12
+                6, 12
             ],
 
             'count': [
-                5, 24
+                4, 24
             ],
 
             'speed': [
@@ -87,7 +87,81 @@
 
                 'video': 'TV Static Distorted --audio --video.mp4',
 
-                'length': 0.6
+                'length': 0.2
+            },
+
+            'rank-config': {
+
+                'vertical-pixels': 48,
+                'horizontal-pixels': 36,
+                'horizontal-pixel-gap': 44
+            }
+        },
+
+        'web': {
+
+            'length': 12,
+
+            'archive': [
+
+                'nba',
+                'nbahighlights',
+                'basketball',
+                'CollegeBasketball',
+                'soccer',
+                'footballhighlights',
+                'nfl',
+                'NFLHighlights',
+                'mma',
+                'ufc',
+                'Boxing',
+                'WWE',
+                'SquaredCircle',
+                'sports',
+                'SportsHighlights',
+                'CrazyHandball',
+                'Hockey',
+                'nhl',
+                'tennis',
+                'baseball',
+                'MLB',
+                'Cricket',
+                'SportsFail',
+                'PublicFreakout',
+                'Whatcouldgowrong'
+            ]
+        },
+
+        'script': {
+
+            'upload-prompt': 'You are a Youtube Channel\n\nCreate a title for a Youtube Short using relevant data provided & trending topics FOR EXAMPLE: instantkarma = Use the word Karen, Politics = Relevant Poltical Figures\nHere is data that may influence the creation:\n{data}\n\nOutput:\n{\n    Title = Created Title\n    Description = Created Description\n}\n\nOutput must contain what is required using the data and format exactly into a dictionary as shown\nAny other formats are void & must be re-done until it is exactly as specified, JSON output must be exactly JSON Dictionary and be availible to turn into python dictionary without error' 
+        }
+    },
+
+    'instant-karma-personified': {
+
+        'video': {
+
+            'lengths': [
+                4.5, 12
+            ],
+
+            'count': [
+                5, 24
+            ],
+
+            'speed': [
+                1.25, 1
+            ],
+
+            'font': 'fredoka-one.one-regular.ttf',
+            'font-size': 32,
+
+            'separator-config': {
+
+                'video': 'TV Static Distorted --audio --video.mp4',
+
+                'length': 0.4
             },
 
             'rank-config': {

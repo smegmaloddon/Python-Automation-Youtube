@@ -33,20 +33,26 @@ def Run(
     channel : str
 ) -> None:
     
-    # cleanse temp/ file
-    Directory.Cleanse(
-        folder=Configuration.TEMPORARY
-    )
-    
-    # fetch temporary data for channel
-    __Temporary(
-        channel=channel
-    )
+    # error handling
+    try:
 
-    Authorisation.Run()
+        # cleanse temp/ file
+        Directory.Cleanse(
+            folder=Configuration.TEMPORARY
+        )
+        
+        # fetch temporary data for channel
+        __Temporary(
+            channel=channel
+        )
 
-    # run videos for debug
-    Videos.Run()
+        Authorisation.Run()
+
+        # run videos for debug
+        Videos.Run()
+    except:
+
+        pass
 
 # entry
 if __name__ == '__main__':
@@ -57,6 +63,9 @@ if __name__ == '__main__':
     )
     Run(
         channel='instant-karma-personified'
+    )
+    Run(
+        channel='sports-clips-channel'
     )
 
     print(
