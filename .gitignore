@@ -19,3 +19,8 @@ __pycache__/
 # Editor files
 .vscode/
 *.swp
+
+data/oauth.json
+data/secrets.json
+*.json
+token.pickle
