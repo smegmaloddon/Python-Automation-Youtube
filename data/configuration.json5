@@ -5,7 +5,7 @@
         'video': {
 
             'lengths': [
-                7, 12
+                6, 12
             ],
 
             'count': [
@@ -13,7 +13,7 @@
             ],
 
             'speed': [
-                1.5, 1
+                1.25, 1
             ],
 
             'font': 'fredoka-one.one-regular.ttf',
@@ -36,11 +36,29 @@
 
         'web': {
 
-            'length': 12,
+            'length': 16,
 
             'archive': [
 
-                'AnimalsBeingDerps'
+                'instantkarma',
+                'instantfails',
+                'dashcamUK'
+            ]
+        }
+    },
+
+    'placeholder-comments': {
+
+        'video': {
+
+            
+        },
+
+        'web': {
+
+            'archive': [
+
+                'askreddit'
             ]
         }
     }

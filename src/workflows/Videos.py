@@ -199,10 +199,10 @@ def __Merge(
 
 def Run(
 ) -> None:
-    
+   
     # fetch posts --(pre-ranked, pre-video : bool)
     posts : list[dict] = __Posts()
-
+    
     # download posts
     __Download(
         posts=posts

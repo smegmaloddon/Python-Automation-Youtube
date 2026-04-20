@@ -21,7 +21,7 @@ QUERY_LIST: list[str] = [
     'rising',
     # 'controversial'
 ]
-TIME_DELAY : float = 0.75
+TIME_DELAY : float = 1.5
 HEADERS : dict[str : str] = {
     'User-Agent': 'my-reddit-app/0.1'
 }

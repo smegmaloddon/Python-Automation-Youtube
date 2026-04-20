@@ -6,7 +6,7 @@ import time
 from src.utils.data import Temporary, Configuration
 from src.utils.io import JSON5, Directory
 
-from src.workflows import Videos
+from src.workflows import Videos, Comments
 
 # functions
 def __Temporary(
@@ -38,11 +38,11 @@ def Run(
     
     # fetch temporary data for channel
     __Temporary(
-        channel='placeholder-channel'
+        channel='placeholder-comments'
     )
 
     # run videos for debug
-    Videos.Run()
+    Comments.Run()
 
 # entry
 if __name__ == '__main__':
